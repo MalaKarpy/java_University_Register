@@ -1,0 +1,21 @@
+<h1>Students list!</h1>
+
+<p>Add a new Student:</p>
+
+<form action="/students" method="post">
+  <label for="name">Students Name</label>
+  <input id="name" name="name" type="text">
+
+  <label for ="dt_enroll"> Date Of Enrollment</label>
+  <input id ="dt_enroll" name="dt_enroll" type="date">
+
+  <button type="submit">Add Student</button>
+</form>
+
+#foreach ($student in $students)
+  <li><a href="/students/$student.getId()">$student.getName() &nbsp $student.getDateEnroll()</a>
+
+    </li>
+#end
+
+<p><a href='/'>Home</a></p>

@@ -1,0 +1,19 @@
+<h1>Courses list!</h1>
+
+<p>Add a new course:</p>
+
+<form action="/courses" method="post">
+  <label for="description">Course Description</label>
+  <input id="description" name="description" type="text">
+
+  <label for="course_number">Course Number</label>
+  <input id="course_number" name="course_number" type="text">
+
+  <button type="submit">Add course</button>
+</form>
+
+#foreach ($course in $courses)
+  <li><a href="/courses/$course.getId()">$course.getDescription() &nbsp $course.getCourseNumber() </a></li>
+#end
+
+<p><a href='/'>Home</a></p>

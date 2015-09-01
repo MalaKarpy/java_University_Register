@@ -1,0 +1,29 @@
+<h1>$student.getName()</h1>
+
+#if($student.getCourses())
+  <p>Here are the courses this student is enrolled in:</p>
+  <ul>
+    #foreach($course in $student.getCourses())
+      <li>$course.getDescription()</li>
+    #end
+  </ul>
+#end
+
+<h4>Add a course for this student:</h4>
+
+<form action='/students/$student.getId()' method='post'>
+    <input id="student_id" name="student_id" type="hidden" value="$student.getId()">
+    <label for="course_name">Select a course</label>
+    <select id='course_name' name='course_name' type='text'>
+      #foreach($course in $allCourses)
+        <option value="$course.getId()"> $course.getDescription() </option>
+      #end
+    </select>
+    <button type='submit'>Add Course</button>
+</form>
+
+<p><a href="/student/$student.getId()/edit">Edit this student</a></p>
+<p><a href="/student/$student.getId()/delete">Delete this student</a></p>
+
+
+<p><a href='/'>Home</a></p>

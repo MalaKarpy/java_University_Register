@@ -1,13 +1,17 @@
 import java.util.List;
 import org.sql2o.*;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
 
 public class Student {
   private int id;
   private String name;
   private String dt_enroll;
 
-  public Student(String name, dt_enroll) {
+  public Student(String name, String dt_enroll) {
     this.name = name;
     this.dt_enroll = dt_enroll;
   }
@@ -43,9 +47,10 @@ public class Student {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO students(name) VALUES (:name)";
+      String sql = "INSERT INTO students(name,dt_enroll) VALUES (:name,:dt_enroll)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
+        .addParameter("dt_enroll", this.dt_enroll)
         .executeUpdate()
         .getKey();
     }
